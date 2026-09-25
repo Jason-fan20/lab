@@ -1,0 +1,225 @@
+<!--
+  Sites@Duke Express — paste this ENTIRE file into ONE "Custom HTML" block.
+  Where: https://sites.duke.edu/jaymedai/wp-admin/  →  Pages → Add New
+         → block inserter (+) → "Custom HTML" → paste → Publish
+         → Settings → Reading → "A static page" → choose this page
+  All CSS is scoped under .jf-page so it cannot collide with the theme.
+-->
+<div class="jf-page">
+<style>
+.jf-page{
+  --jf-surface:#ffffff; --jf-surface2:#f7f9fa; --jf-ink:#11161c; --jf-soft:#4b5661;
+  --jf-faint:#6f7a85; --jf-line:#d3dae1; --jf-line2:#e3e8ed; --jf-navy:#0e3355;
+  --jf-accent:#16706a; --jf-accent2:#0f544f; --jf-overlay:#c24a2b;
+  color:var(--jf-ink); font-size:16px; line-height:1.62;
+  font-family:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  .jf-page{
+    --jf-surface:#141a21; --jf-surface2:#1a212a; --jf-ink:#e7ebef; --jf-soft:#a9b4bf;
+    --jf-faint:#8d98a3; --jf-line:#2b343e; --jf-line2:#232b34; --jf-navy:#9fc4e4;
+    --jf-accent:#5cb8ad; --jf-accent2:#7fcdc3; --jf-overlay:#e97a56;
+  }
+}
+.jf-page *{box-sizing:border-box}
+.jf-page h1,.jf-page h2,.jf-page h3,.jf-page h4{
+  font-family:"Source Serif 4",Georgia,"Times New Roman",serif;
+  color:var(--jf-navy); margin:0; text-wrap:balance; line-height:1.2;
+}
+.jf-page p{margin:0}
+.jf-page a{color:var(--jf-accent2);text-decoration:none;border-bottom:1px solid var(--jf-line)}
+.jf-page a:hover{border-bottom-color:var(--jf-accent)}
+.jf-page .jf-label{
+  font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  font-size:.6875rem;letter-spacing:.09em;text-transform:uppercase;color:var(--jf-faint);
+}
+
+/* header */
+.jf-page .jf-top{display:flex;gap:1.6rem;flex-wrap:wrap;align-items:flex-end;padding-bottom:1.1rem;border-bottom:1px solid var(--jf-line)}
+.jf-page .jf-portrait{width:150px;aspect-ratio:4/5;flex:0 0 auto;border:1px solid var(--jf-line);border-radius:3px;display:block}
+.jf-page .jf-id{flex:1 1 16rem;min-width:0}
+.jf-page .jf-id h2{font-size:2rem;font-weight:700;letter-spacing:-.02em}
+.jf-page .jf-id p{color:var(--jf-soft);font-size:.9375rem;margin-top:.35rem}
+
+/* portrait drawing (not a photograph) */
+.jf-page .f-bg{fill:var(--jf-surface2)}
+.jf-page .f-grid path{fill:none;stroke:var(--jf-line2);stroke-width:1}
+.jf-page .f-body{fill:var(--jf-navy)}
+.jf-page .f-shirt{fill:var(--jf-surface2)}
+.jf-page .f-face{fill:color-mix(in srgb,var(--jf-navy) 20%,var(--jf-surface))}
+.jf-page .f-hair{fill:color-mix(in srgb,var(--jf-navy) 82%,#000)}
+.jf-page .f-eye{fill:var(--jf-navy)}
+.jf-page .f-glass{fill:none;stroke:var(--jf-overlay);stroke-width:2.2;stroke-linejoin:round}
+.jf-page .f-line{fill:none;stroke:color-mix(in srgb,var(--jf-navy) 50%,transparent);stroke-width:1.6;stroke-linecap:round}
+.jf-page .f-badge{fill:var(--jf-accent)}
+.jf-page .f-badge-line{fill:none;stroke:var(--jf-surface);stroke-width:1.4;opacity:.85}
+
+/* cards + meta */
+.jf-page .jf-card{background:var(--jf-surface);border:1px solid var(--jf-line);border-radius:3px;padding:1rem 1.1rem;margin-top:1.4rem}
+.jf-page .jf-meta{display:grid;grid-template-columns:auto 1fr;gap:.42rem .9rem;font-size:.8125rem;margin:0}
+.jf-page .jf-meta dt{font-family:"IBM Plex Mono",monospace;font-size:.6875rem;letter-spacing:.06em;text-transform:uppercase;color:var(--jf-faint);padding-top:.16rem;margin:0}
+.jf-page .jf-meta dd{margin:0;color:var(--jf-ink)}
+
+/* sections */
+.jf-page .jf-sec{margin-top:2.4rem}
+.jf-page .jf-shead{display:flex;align-items:baseline;gap:.9rem;border-bottom:1px solid var(--jf-line);padding-bottom:.5rem;margin-bottom:1rem}
+.jf-page .jf-shead h3{font-size:1.3rem;font-weight:600}
+.jf-page .jf-shead .jf-label{margin-left:auto}
+.jf-page .jf-prose{max-width:66ch;display:flex;flex-direction:column;gap:.9rem}
+
+/* research threads */
+.jf-page .jf-thread{background:var(--jf-surface);border:1px solid var(--jf-line);border-left:3px solid var(--jf-accent);border-radius:0 3px 3px 0;padding:1rem 1.2rem;margin-bottom:1rem}
+.jf-page .jf-tag{font-family:"IBM Plex Mono",monospace;font-size:.6875rem;color:var(--jf-accent2);letter-spacing:.06em}
+.jf-page .jf-thread h4{font-size:1.02rem;font-weight:600;margin:.35rem 0 .4rem}
+.jf-page .jf-thread p{color:var(--jf-soft);font-size:.9375rem;max-width:62ch}
+.jf-page .jf-thread dl{margin:.8rem 0 0;display:grid;grid-template-columns:auto 1fr;gap:.3rem .85rem;font-size:.8125rem;border-top:1px solid var(--jf-line2);padding-top:.7rem}
+.jf-page .jf-thread dt{font-family:"IBM Plex Mono",monospace;font-size:.6875rem;letter-spacing:.06em;text-transform:uppercase;color:var(--jf-faint);padding-top:.12rem;margin:0}
+.jf-page .jf-thread dd{margin:0;color:var(--jf-soft)}
+
+/* publications */
+.jf-page .jf-pub{display:grid;grid-template-columns:3.4rem 1fr;gap:1rem;padding:.85rem 0;border-bottom:1px solid var(--jf-line2)}
+.jf-page .jf-pub:last-of-type{border-bottom:0}
+.jf-page .jf-yr{font-family:"IBM Plex Mono",monospace;font-size:.75rem;color:var(--jf-faint);font-variant-numeric:tabular-nums;padding-top:.2rem}
+.jf-page .jf-pub h4{font-size:.98rem;font-weight:600;line-height:1.42;font-family:inherit;color:var(--jf-ink)}
+.jf-page .jf-au{font-size:.8125rem;color:var(--jf-soft);margin-top:.2rem}
+.jf-page .jf-au b{color:var(--jf-ink);font-weight:600}
+.jf-page .jf-ven{font-family:"IBM Plex Mono",monospace;font-size:.6875rem;color:var(--jf-faint);margin-top:.28rem;letter-spacing:.04em}
+.jf-page .jf-ven em{color:var(--jf-accent2);font-style:normal;font-weight:500}
+
+@media (max-width:560px){
+  .jf-page .jf-pub{grid-template-columns:1fr;gap:.15rem}
+  .jf-page .jf-portrait{width:120px}
+}
+</style>
+
+<div class="jf-top">
+  <svg class="jf-portrait" viewBox="0 0 160 200" role="img" aria-label="Illustrated portrait of Jiashuo Fan (a drawing, not a photograph)">
+    <rect class="f-bg" width="160" height="200"></rect>
+    <g class="f-grid"><path d="M0 40 H160 M0 80 H160 M0 120 H160 M0 160 H160"></path></g>
+    <path class="f-body" d="M12 200 C 18 163 46 149 80 149 C 114 149 142 163 148 200 Z"></path>
+    <path class="f-shirt" d="M80 149 L 67 155 L 80 180 L 93 155 Z"></path>
+    <path class="f-face" d="M69 126 H91 V152 H69 Z"></path>
+    <ellipse class="f-face" cx="80" cy="102" rx="30" ry="34"></ellipse>
+    <circle class="f-face" cx="51" cy="104" r="5"></circle>
+    <circle class="f-face" cx="109" cy="104" r="5"></circle>
+    <path class="f-hair" d="M50 99 C 48 70 63 59 80 59 C 97 59 112 70 110 99 C 105 80 96 74 80 74 C 64 74 55 80 50 99 Z"></path>
+    <circle class="f-eye" cx="68" cy="104" r="2.2"></circle>
+    <circle class="f-eye" cx="92" cy="104" r="2.2"></circle>
+    <g class="f-glass">
+      <rect x="58" y="96" width="19" height="16" rx="3.5"></rect>
+      <rect x="83" y="96" width="19" height="16" rx="3.5"></rect>
+      <path d="M77 103 H83 M58 101 L 51 99 M102 101 L 109 99"></path>
+    </g>
+    <path class="f-line" d="M73 122 C 76 125 84 125 87 122"></path>
+    <path class="f-line" d="M67 155 L 75 178 M93 155 L 85 178"></path>
+    <rect class="f-badge" x="71" y="177" width="18" height="13" rx="2"></rect>
+    <path class="f-badge-line" d="M75 181 H85 M75 185 H82"></path>
+  </svg>
+  <div class="jf-id">
+    <h2>Jiashuo Fan</h2>
+    <p>Pierre R. Lamond Department of Electrical and Computer Engineering, Duke University<br>
+    <a href="mailto:jf381@duke.edu">jf381@duke.edu</a></p>
+  </div>
+</div>
+
+<div class="jf-card">
+  <dl class="jf-meta">
+    <dt>Position</dt><dd>Graduate student, Electrical &amp; Computer Engineering</dd>
+    <dt>Institution</dt><dd>Duke University, Durham, NC</dd>
+    <dt>Interests</dt><dd>Label-efficient learning · vision–language grounding · medical image analysis</dd>
+    <dt>Profiles</dt><dd><a href="https://scholars.duke.edu/person/jiashuo.fan">Scholars@Duke</a> · <a href="https://scholar.google.com/citations?user=M5wOsysAAAAJ&amp;hl=en">Google Scholar</a></dd>
+  </dl>
+</div>
+
+<div class="jf-sec">
+  <div class="jf-shead"><h3>About</h3><span class="jf-label">Sep 2026</span></div>
+  <div class="jf-prose">
+    <p>I am a graduate student in the Pierre R. Lamond Department of Electrical and Computer Engineering at Duke University. I work on learning when labels are scarce, and on connecting language to pixels — and I am most interested in the version of those problems that appears in medical imaging, where annotation costs clinician hours, the text that accompanies an image is a report rather than a caption, and a wrong answer has a patient attached to it.</p>
+    <p>My published work so far covers uncertainty-guided co-training for semi-supervised segmentation (CVPR 2022), novel-object captioning and referring-expression grounding (ICCV 2023, ACM MM 2023), 3D instance segmentation from click-level annotations, in-context semi-supervised learning, and generative models for tissue reconstruction.</p>
+  </div>
+</div>
+
+<div class="jf-sec">
+  <div class="jf-shead"><h3>Research</h3><span class="jf-label">Three threads</span></div>
+
+  <div class="jf-thread">
+    <span class="jf-tag">Thread 01 · Label efficiency</span>
+    <h4>Learning from annotations nobody can afford to finish</h4>
+    <p>Semi-supervised and weakly supervised segmentation: how much of a dense annotation is actually necessary, and which unlabeled examples a model should trust. My CVPR 2022 work used disagreement between two prediction heads as an uncertainty signal for pseudo-labelling; ClickSeg pushed the annotation budget down to single clicks in 3D.</p>
+    <dl><dt>Methods</dt><dd>Co-training with uncertainty estimates, pseudo-label filtering, click- and scribble-level supervision, in-context adaptation</dd></dl>
+  </div>
+
+  <div class="jf-thread">
+    <span class="jf-tag">Thread 02 · Language and pixels</span>
+    <h4>Grounding: text that points back at the image</h4>
+    <p>Captioning objects a model was never trained to name, and resolving a referring expression to the right region. The recurring question is alignment — whether the phrase a model produces is tied to the evidence it claims, which is exactly what matters when the text is a clinical finding rather than a caption.</p>
+    <dl><dt>Methods</dt><dd>Contrastive alignment, anchor-based referring-expression comprehension, vision–language pretraining</dd></dl>
+  </div>
+
+  <div class="jf-thread">
+    <span class="jf-tag">Thread 03 · Imaging applications</span>
+    <h4>Where these methods meet real imaging data</h4>
+    <p>Applying the two threads above to biomedical and clinical imaging: generative reconstruction of tissue structure, and evaluation that survives a change of scanner, site, or protocol rather than a single held-out split.</p>
+    <dl><dt>Evaluation</dt><dd>Dice/DSC for localized structures, AUROC / AUPRC with confidence intervals, external cohorts reported separately from the development set</dd></dl>
+  </div>
+</div>
+
+<div class="jf-sec">
+  <div class="jf-shead"><h3>Publications</h3><span class="jf-label">Full list on Scholar</span></div>
+
+  <div class="jf-pub"><div class="jf-yr">2025</div><div>
+    <h4>In-Context Semi-Supervised Learning</h4>
+    <p class="jf-au"><b>Jiashuo Fan</b>, Petru Rosu, Aaron T. Wang, Michael Li, Lawrence Carin, Xiang Cheng</p>
+    <p class="jf-ven"><em>arXiv:2512.15934</em> · <a href="https://arxiv.org/abs/2512.15934">Preprint</a></p>
+  </div></div>
+
+  <div class="jf-pub"><div class="jf-yr">2025</div><div>
+    <h4>Model Reprogramming Demystified: A Neural Tangent Kernel Perspective</h4>
+    <p class="jf-au">Ming-Yu Chung, <b>Jiashuo Fan</b>, Hancheng Ye, Qinsi Wang, Wei Shen, Chia-Mu Yu, Pin-Yu Chen, Sy-Yen Kuo</p>
+    <p class="jf-ven"><em>arXiv:2506.00620</em> · <a href="https://arxiv.org/abs/2506.00620">Preprint</a></p>
+  </div></div>
+
+  <div class="jf-pub"><div class="jf-yr">2025</div><div>
+    <h4>Tissue Reassembly with Generative AI</h4>
+    <p class="jf-au">Tingyang Yu, Chanakya Ekbote, Nikita Morozov, <b>Jiashuo Fan</b>, et al., Pascal Frossard, Maria Brbić</p>
+    <p class="jf-ven"><em>bioRxiv</em> · <a href="https://doi.org/10.1101/2025.02.13.638045">10.1101/2025.02.13.638045</a></p>
+  </div></div>
+
+  <div class="jf-pub"><div class="jf-yr">2023</div><div>
+    <h4>RCA-NOC: Relative Contrastive Alignment for Novel Object Captioning</h4>
+    <p class="jf-au"><b>Jiashuo Fan</b>, Yaoyuan Liang, Leyao Liu, Shao-Lun Huang, Lei Zhang</p>
+    <p class="jf-ven"><em>ICCV 2023</em> — IEEE/CVF International Conference on Computer Vision</p>
+  </div></div>
+
+  <div class="jf-pub"><div class="jf-yr">2023</div><div>
+    <h4>LUNA: Language as Continuing Anchors for Referring Expression Comprehension</h4>
+    <p class="jf-au">Yaoyuan Liang, Zhao Yang, Yansong Tang, <b>Jiashuo Fan</b>, Ziran Li, Jingang Wang, Philip H. S. Torr, Shao-Lun Huang</p>
+    <p class="jf-ven"><em>ACM Multimedia 2023</em></p>
+  </div></div>
+
+  <div class="jf-pub"><div class="jf-yr">2023</div><div>
+    <h4>ClickSeg: 3D Instance Segmentation with Click-Level Weak Annotations</h4>
+    <p class="jf-au">Leyao Liu, Tao Kong, Minzhao Zhu, <b>Jiashuo Fan</b>, Lu Fang</p>
+    <p class="jf-ven"><em>arXiv:2307.09732</em> · <a href="https://arxiv.org/abs/2307.09732">Preprint</a></p>
+  </div></div>
+
+  <div class="jf-pub"><div class="jf-yr">2022</div><div>
+    <h4>UCC: Uncertainty Guided Cross-Head Co-Training for Semi-Supervised Semantic Segmentation</h4>
+    <p class="jf-au"><b>Jiashuo Fan</b>, Bin-Bin Gao, Huan Jin, Lihui Jiang</p>
+    <p class="jf-ven"><em>CVPR 2022</em> · <a href="https://doi.org/10.1109/CVPR52688.2022.00971">DOI</a> · <a href="https://arxiv.org/abs/2205.10334">arXiv</a></p>
+  </div></div>
+
+  <div class="jf-prose" style="margin-top:1rem">
+    <p>Full list: <a href="https://scholar.google.com/citations?user=M5wOsysAAAAJ&amp;hl=en">Google Scholar</a> · <a href="https://scholars.duke.edu/person/jiashuo.fan">Scholars@Duke</a>.</p>
+  </div>
+</div>
+
+<div class="jf-sec">
+  <div class="jf-shead"><h3>Contact</h3><span class="jf-label">Durham, NC</span></div>
+  <div class="jf-prose">
+    <p><b>Email</b> · <a href="mailto:jf381@duke.edu">jf381@duke.edu</a> — the fastest way to reach me.<br>
+    <b>Institution</b> · Duke University, Durham, NC 27708</p>
+    <p>Happy to talk about label-efficient learning or medical image analysis, and open to collaboration on projects where the evaluation is the hard part.</p>
+  </div>
+</div>
+</div>
