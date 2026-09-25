@@ -1,0 +1,474 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Duke Medical Imaging & AI Jiashuo Lab — Jiashuo Fan, Assistant Professor, Duke University School of Medicine. Multimodal imaging foundation models, grounded reporting, label-efficient learning, external validation.">
+<meta name="author" content="Jiashuo Fan">
+<meta name="color-scheme" content="light dark">
+<meta property="og:title" content="Duke Medical Imaging & AI Jiashuo Lab">
+<meta property="og:description" content="Jiashuo Fan, Assistant Professor — multimodal imaging foundation models at Duke University School of Medicine.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🩻</text></svg>">
+<title>Duke Medical Imaging &amp; AI Jiashuo Lab</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap">
+<style>
+  :root{
+    --ground:#eef1f4;
+    --surface:#ffffff;
+    --surface-2:#f7f9fa;
+    --ink:#11161c;
+    --ink-soft:#4b5661;
+    --ink-faint:#6f7a85;
+    --line:#d3dae1;
+    --line-soft:#e3e8ed;
+    --navy:#0e3355;
+    --accent:#16706a;
+    --accent-ink:#0f544f;
+    --overlay:#c24a2b;
+    --overlay-wash:#fbeee9;
+    --shadow:0 1px 2px rgba(14,51,85,.06),0 8px 24px -16px rgba(14,51,85,.22);
+    --maxw:1160px;
+  }
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme="light"]){
+      --ground:#0c1014;
+      --surface:#141a21;
+      --surface-2:#1a212a;
+      --ink:#e7ebef;
+      --ink-soft:#a9b4bf;
+      --ink-faint:#8d98a3;
+      --line:#2b343e;
+      --line-soft:#232b34;
+      --navy:#9fc4e4;
+      --accent:#5cb8ad;
+      --accent-ink:#7fcdc3;
+      --overlay:#e97a56;
+      --overlay-wash:#251914;
+      --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 28px -18px rgba(0,0,0,.8);
+    }
+  }
+  :root[data-theme="dark"]{
+    --ground:#0c1014;
+    --surface:#141a21;
+    --surface-2:#1a212a;
+    --ink:#e7ebef;
+    --ink-soft:#a9b4bf;
+    --ink-faint:#8d98a3;
+    --line:#2b343e;
+    --line-soft:#232b34;
+    --navy:#9fc4e4;
+    --accent:#5cb8ad;
+    --accent-ink:#7fcdc3;
+    --overlay:#e97a56;
+    --overlay-wash:#251914;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 28px -18px rgba(0,0,0,.8);
+  }
+
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    background:var(--ground);
+    color:var(--ink);
+    font-family:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+    font-size:16px;
+    line-height:1.62;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{max-width:100%}
+  [hidden]{display:none!important}
+  a{color:var(--accent-ink);text-decoration:none;border-bottom:1px solid color-mix(in srgb,var(--accent) 40%,transparent)}
+  a:hover{border-bottom-color:var(--accent)}
+  a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:2px}
+  h1,h2,h3,h4{font-family:"Source Serif 4",Georgia,"Times New Roman",serif;color:var(--navy);text-wrap:balance;margin:0}
+  p{margin:0}
+  ul{margin:0;padding-left:1.1em}
+  li::marker{color:var(--accent)}
+
+  .skip{position:absolute;left:-9999px;top:0;background:var(--surface);padding:.6rem 1rem;z-index:20}
+  .skip:focus{left:.75rem;top:.75rem}
+
+  .label{
+    font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+    font-size:.6875rem;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-faint);
+  }
+  .pubs{display:flex;flex-direction:column;gap:1rem}
+  .pub{display:grid;grid-template-columns:3.6rem 1fr;gap:1.1rem;padding-bottom:1rem;border-bottom:1px solid var(--line-soft)}
+  .pub:last-child{border-bottom:0;padding-bottom:0}
+  .pub .yr{font-family:"IBM Plex Mono",monospace;font-size:.75rem;color:var(--ink-faint);font-variant-numeric:tabular-nums;padding-top:.22rem}
+  .pub h4{font-size:.9875rem;font-weight:600;line-height:1.42;font-family:"IBM Plex Sans",sans-serif;color:var(--ink)}
+  .pub .authors{font-size:.8125rem;color:var(--ink-soft);margin-top:.22rem}
+  .pub .authors b{color:var(--ink);font-weight:600}
+  .pub .venue{font-family:"IBM Plex Mono",monospace;font-size:.6875rem;color:var(--ink-faint);margin-top:.3rem;letter-spacing:.04em}
+  .pub .venue em{color:var(--accent-ink);font-style:normal;font-weight:500}
+
+  .masthead{background:var(--surface);border-bottom:1px solid var(--line)}
+  .masthead__in{max-width:var(--maxw);margin:0 auto;padding-block:1.6rem 0;padding-inline:1.25rem}
+  .wordmark{display:flex;align-items:center;gap:.7rem;flex-wrap:wrap}
+  .glyph{
+    width:30px;height:30px;flex:0 0 auto;border-radius:3px;
+    background:
+      linear-gradient(90deg,transparent 47%,color-mix(in srgb,var(--overlay) 85%,transparent) 47% 53%,transparent 53%),
+      linear-gradient(0deg,transparent 47%,color-mix(in srgb,var(--overlay) 85%,transparent) 47% 53%,transparent 53%),
+      radial-gradient(circle at 50% 50%,color-mix(in srgb,var(--navy) 55%,transparent) 0 34%,transparent 35%),
+      var(--surface-2);
+    border:1px solid var(--line);
+  }
+  h1.lab{font-size:1.15rem;font-weight:600;letter-spacing:-.005em;line-height:1.25}
+  .lab small{display:block;font-family:"IBM Plex Mono",monospace;font-size:.6875rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-faint);font-weight:400;margin-top:.2rem}
+  .pi{margin-top:1.15rem;display:flex;flex-wrap:wrap;align-items:flex-end;gap:.35rem 1rem}
+  .pi h2{font-size:2.05rem;font-weight:700;letter-spacing:-.02em;line-height:1.1}
+  .pi p{color:var(--ink-soft);font-size:.9375rem;padding-bottom:.28rem}
+  nav{margin-top:1.3rem;display:flex;gap:1.4rem;overflow-x:auto;scrollbar-width:none}
+  nav::-webkit-scrollbar{display:none}
+  nav a{
+    border:0;padding:.55rem 0 .7rem;white-space:nowrap;color:var(--ink-soft);
+    font-family:"IBM Plex Mono",monospace;font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;
+    border-bottom:2px solid transparent;
+  }
+  nav a:hover{color:var(--ink);border-bottom-color:var(--accent)}
+
+  .shell{max-width:var(--maxw);margin:0 auto;padding-inline:1.25rem;padding-block:2.4rem 3rem;display:grid;grid-template-columns:19rem 1fr;gap:2.6rem;align-items:start}
+  @media (max-width:900px){.shell{grid-template-columns:1fr;gap:2rem}}
+
+  /* ---- left rail ---- */
+  .rail{position:sticky;top:calc(env(safe-area-inset-top,0px) + 1.25rem);display:flex;flex-direction:column;gap:1.1rem}
+  @media (max-width:900px){.rail{position:static}}
+  .portrait{
+    width:100%;aspect-ratio:4/5;display:block;border:1px solid var(--line);border-radius:3px;background:var(--surface-2);
+  }
+  /* placeholder portrait: a cat, drawn in the lab palette */
+  .p-bg{fill:var(--surface-2)}
+  .p-grid path{fill:none;stroke:color-mix(in srgb,var(--line) 65%,transparent);stroke-width:1}
+  .p-tail{fill:none;stroke:var(--navy);stroke-width:9;stroke-linecap:round}
+  .p-cat{fill:var(--navy)}
+  .p-eye{fill:var(--accent)}
+  .p-pupil{fill:var(--surface);opacity:.9}
+  .p-nose{fill:var(--overlay)}
+  .p-whisk{fill:none;stroke:var(--surface);stroke-width:1.5;stroke-linecap:round;opacity:.5}
+  .p-mark{fill:none;stroke:color-mix(in srgb,var(--overlay) 75%,transparent);stroke-width:2}
+  .p-cross{fill:none;stroke:color-mix(in srgb,var(--overlay) 75%,transparent);stroke-width:1.5}
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:3px;padding:1.05rem 1.1rem}
+  .meta{display:grid;grid-template-columns:auto 1fr;gap:.42rem .85rem;font-size:.8125rem}
+  .meta dt{font-family:"IBM Plex Mono",monospace;font-size:.6875rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-faint);padding-top:.16rem}
+  .meta dd{margin:0;color:var(--ink)}
+  .meta .num{font-variant-numeric:tabular-nums}
+  .links{display:flex;flex-direction:column;gap:.5rem;font-size:.875rem}
+  .links a{display:flex;justify-content:space-between;gap:1rem;border:0;border-bottom:1px solid var(--line-soft);padding-bottom:.5rem}
+  .links a:last-child{border-bottom:0;padding-bottom:0}
+  .links span{font-family:"IBM Plex Mono",monospace;font-size:.6875rem;color:var(--ink-faint);letter-spacing:.05em;text-transform:uppercase}
+  .status{
+    border-left:3px solid var(--overlay);background:var(--overlay-wash);
+    padding:.85rem 1rem;border-radius:0 3px 3px 0;
+  }
+  .status strong{display:block;font-family:"IBM Plex Mono",monospace;font-size:.6875rem;letter-spacing:.09em;text-transform:uppercase;color:var(--overlay);font-weight:500}
+  .status p{font-size:.8125rem;margin-top:.35rem;color:var(--ink-soft)}
+
+  /* ---- main ---- */
+  main{display:flex;flex-direction:column;gap:2.9rem;min-width:0}
+  section{scroll-margin-top:1.5rem}
+  .shead{display:flex;align-items:baseline;gap:.9rem;border-bottom:1px solid var(--line);padding-bottom:.55rem;margin-bottom:1.1rem}
+  .shead h3{font-size:1.32rem;font-weight:600;letter-spacing:-.01em}
+  .shead .label{margin-left:auto;flex:0 0 auto}
+  .prose{max-width:66ch;display:flex;flex-direction:column;gap:.9rem;color:var(--ink)}
+  .prose p{font-size:1rem}
+
+  .dirs{display:flex;flex-direction:column;gap:1.05rem}
+  .dir{background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:0 3px 3px 0;padding:1.1rem 1.25rem;box-shadow:var(--shadow)}
+  .dir h4{font-size:1.05rem;font-weight:600;margin-bottom:.4rem}
+  .dir > p{color:var(--ink-soft);font-size:.9375rem;max-width:62ch}
+  .dir dl{margin:.85rem 0 0;display:grid;grid-template-columns:auto 1fr;gap:.3rem .85rem;font-size:.8125rem;border-top:1px solid var(--line-soft);padding-top:.75rem}
+  .dir dt{font-family:"IBM Plex Mono",monospace;font-size:.6875rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-faint);padding-top:.12rem}
+  .dir dd{margin:0;color:var(--ink-soft)}
+  .tag{font-family:"IBM Plex Mono",monospace;font-size:.6875rem;color:var(--accent-ink);letter-spacing:.06em}
+
+  .news{list-style:none;padding:0;display:flex;flex-direction:column}
+  .news li{display:grid;grid-template-columns:6.5rem 1fr;gap:1rem;padding:.7rem 0;border-bottom:1px solid var(--line-soft);font-size:.9375rem;align-items:baseline}
+  .news li:last-child{border-bottom:0}
+  .news time{font-family:"IBM Plex Mono",monospace;font-size:.75rem;color:var(--ink-faint);font-variant-numeric:tabular-nums;letter-spacing:.03em}
+  @media (max-width:560px){.news li{grid-template-columns:1fr;gap:.15rem}}
+
+  .roles{display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:1rem}
+  .role{background:var(--surface);border:1px solid var(--line);border-radius:3px;padding:1rem 1.1rem;display:flex;flex-direction:column;gap:.4rem}
+  .role h4{font-size:.975rem;font-weight:600;font-family:"IBM Plex Sans",sans-serif;color:var(--ink)}
+  .role p{font-size:.875rem;color:var(--ink-soft)}
+  .role .label{margin-top:auto;padding-top:.5rem;border-top:1px solid var(--line-soft)}
+  pre{
+    margin:1.1rem 0 0;background:var(--surface-2);border:1px solid var(--line);border-radius:3px;
+    padding:.95rem 1.05rem;overflow-x:auto;font-family:"IBM Plex Mono",monospace;font-size:.78rem;line-height:1.75;color:var(--ink-soft);
+  }
+  pre b{color:var(--ink);font-weight:500}
+
+  footer{border-top:1px solid var(--line);background:var(--surface)}
+  .footer__in{max-width:var(--maxw);margin:0 auto;padding:1.4rem 1.25rem;display:flex;flex-wrap:wrap;gap:.6rem 1.6rem;align-items:baseline;justify-content:space-between}
+  footer p{font-size:.8125rem;color:var(--ink-faint)}
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="masthead">
+  <div class="masthead__in">
+    <div class="wordmark">
+      <div class="glyph" aria-hidden="true"></div>
+      <h1 class="lab">Duke Medical Imaging &amp; AI Jiashuo Lab
+        <small>Duke University School of Medicine · Durham, NC</small>
+      </h1>
+    </div>
+    <div class="pi">
+      <h2>Jiashuo Fan</h2>
+      <p>Assistant Professor, Duke University School of Medicine · <a href="mailto:jf381@duke.edu">jf381@duke.edu</a></p>
+    </div>
+    <nav aria-label="Sections">
+      <a href="#about">About</a>
+      <a href="#research">Research</a>
+      <a href="#news">News</a>
+      <a href="#publications">Publications</a>
+      <a href="#join">Join the lab</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<div class="shell">
+  <aside class="rail">
+    <svg class="portrait" viewBox="0 0 160 200" role="img" aria-label="Cat illustration used as Jiashuo Fan's profile picture">
+      <rect class="p-bg" width="160" height="200"></rect>
+      <g class="p-grid">
+        <path d="M0 40 H160 M0 80 H160 M0 120 H160 M0 160 H160"></path>
+      </g>
+      <path class="p-tail" d="M118 176 C 146 170 150 132 128 124"></path>
+      <path class="p-cat" d="M80 192 C 44 192 36 150 50 120 C 58 102 102 102 110 120 C 124 150 116 192 80 192 Z"></path>
+      <path class="p-cat" d="M52 76 L 56 40 L 80 60 Z"></path>
+      <path class="p-cat" d="M108 76 L 104 40 L 80 60 Z"></path>
+      <circle class="p-cat" cx="80" cy="94" r="36"></circle>
+      <g class="p-eye">
+        <ellipse cx="66" cy="90" rx="7" ry="9"></ellipse>
+        <ellipse cx="94" cy="90" rx="7" ry="9"></ellipse>
+      </g>
+      <g class="p-pupil">
+        <ellipse cx="66" cy="90" rx="2" ry="6"></ellipse>
+        <ellipse cx="94" cy="90" rx="2" ry="6"></ellipse>
+      </g>
+      <path class="p-nose" d="M76 106 L 84 106 L 80 111 Z"></path>
+      <g class="p-whisk">
+        <path d="M74 114 C 66 118 58 117 52 113"></path>
+        <path d="M86 114 C 94 118 102 117 108 113"></path>
+      </g>
+      <circle class="p-mark" cx="80" cy="150" r="13"></circle>
+      <path class="p-cross" d="M80 137 V 163 M67 150 H 93"></path>
+    </svg>
+
+    <div class="card">
+      <dl class="meta">
+        <dt>Appointment</dt><dd>Assistant Professor, Duke University School of Medicine</dd>
+        <dt>Started</dt><dd class="num">September 2026</dd>
+        <dt>Focus</dt><dd>Multimodal imaging foundation models</dd>
+        <dt>Modalities</dt><dd>CT · MR · PET · CXR</dd>
+        <dt>Openings</dt><dd class="num">1 postdoc · 1–2 PhD</dd>
+      </dl>
+    </div>
+
+    <div class="status">
+      <strong>Recruiting · Fall 2027</strong>
+      <p>The lab is new: I am hiring its first postdoctoral fellow and taking PhD students entering Fall 2027. Please read <a href="#join">Join the lab</a> before emailing.</p>
+    </div>
+
+    <div class="card links">
+      <a href="mailto:jf381@duke.edu">jf381@duke.edu <span>Email</span></a>
+      <a href="https://scholar.google.com/citations?user=M5wOsysAAAAJ&amp;hl=en">Jiashuo Fan <span>Scholar</span></a>
+      <a href="https://scholars.duke.edu/">Scholars@Duke <span>Profile</span></a>
+    </div>
+  </aside>
+
+  <main id="main">
+    <section id="about">
+      <div class="shead"><h3>About</h3><span class="label">Sep 2026</span></div>
+      <div class="prose">
+        <p>I am an Assistant Professor at Duke University School of Medicine, where I direct the Duke Medical Imaging &amp; AI Jiashuo Lab. We build multimodal foundation models for clinical imaging — models pretrained jointly on volumetric images and the text radiologists actually write — and we hold them to the standard a reading room would: findings that point back to voxels, performance that survives a change of scanner, and failure modes we can name before deployment.</p>
+        <p>My earlier work was on learning without enough labels and on connecting language to pixels: uncertainty-guided co-training for semi-supervised segmentation (CVPR 2022), novel-object captioning and referring-expression grounding (ICCV 2023, ACM MM 2023), 3D instance segmentation from click-level annotations, and in-context semi-supervised learning. Clinical imaging is where those problems stop being benchmarks: annotation is expensive because it costs radiologist hours, the language is a report rather than a caption, and a wrong answer has a patient attached to it.</p>
+        <p>Most of our projects start from a question a clinical collaborator brought to us and end with an external validation cohort rather than a leaderboard. The lab opened in September 2026 and is recruiting its first members.</p>
+        <p>I read every email from prospective trainees. I am slower to answer generic ones — see <a href="#join">Join the lab</a> for what to send.</p>
+      </div>
+    </section>
+
+    <section id="research">
+      <div class="shead"><h3>Research</h3><span class="label">Three directions</span></div>
+      <div class="dirs">
+
+        <article class="dir">
+          <span class="tag">Direction 01 · Pretraining</span>
+          <h4>Image–report pretraining that respects how studies are actually structured</h4>
+          <p>A chest CT is not a 2D image and a report is not a caption. We study pretraining objectives that use what DICOM already encodes — series, phase, slice spacing, acquisition parameters, prior studies — as free supervision, and that keep 3D context instead of collapsing volumes into slices.</p>
+          <dl>
+            <dt>Methods</dt><dd>Contrastive and masked-modeling objectives over volumes, series-aware encoders, long-context report modeling, parameter-efficient adaptation (LoRA / adapters)</dd>
+            <dt>Data</dt><dd>De-identified CT / MR / PET / CXR with paired reports, under IRB; DICOM → NIfTI pipelines that keep provenance</dd>
+          </dl>
+        </article>
+
+        <article class="dir">
+          <span class="tag">Direction 02 · Grounding</span>
+          <h4>Reports a radiologist can check: grounding, measurement, and uncertainty</h4>
+          <p>Generated text is only useful if each finding can be traced to the voxels that produced it and to a number someone can verify. We work on phrase grounding in 3D, measurable findings (lesion diameter, volume, Hounsfield-unit ranges, SUV), calibrated uncertainty, and systematic auditing of hallucinated findings and quietly missed ones.</p>
+          <dl>
+            <dt>Metrics</dt><dd>Grounded report accuracy, per-finding sensitivity at fixed specificity, Dice/DSC for localized findings, calibration error, clinically-weighted error counts</dd>
+            <dt>Design</dt><dd>Reader studies with the clinicians who would use the output, not proxy annotators</dd>
+          </dl>
+        </article>
+
+        <article class="dir">
+          <span class="tag">Direction 03 · Validation</span>
+          <h4>Generalization, subgroups, and what happens after deployment</h4>
+          <p>Most imaging models degrade on the first scanner they were not trained on. We characterize that degradation across sites, vendors, protocols, and patient subgroups; develop label-efficient adaptation for new sites; and build monitoring that flags distribution drift in a live PACS setting before accuracy is lost.</p>
+          <dl>
+            <dt>Reporting</dt><dd>AUROC / AUPRC with 95% CI, external cohorts named explicitly, subgroup tables, decision-curve analysis</dd>
+            <dt>Translation</dt><dd>Prospective silent trials; regulatory framing (SaMD, FDA 510(k)) with Duke collaborators</dd>
+          </dl>
+        </article>
+
+      </div>
+    </section>
+
+    <section id="news">
+      <div class="shead"><h3>News</h3><span class="label">Newest first</span></div>
+      <ul class="news">
+        <li><time datetime="2026-09">Sep 2026</time><span>The lab opens at Duke University School of Medicine.</span></li>
+        <li><time datetime="2026-09">Sep 2026</time><span>Recruiting a first postdoctoral fellow, and PhD students entering Fall 2027.</span></li>
+      </ul>
+    </section>
+
+    <section id="publications">
+      <div class="shead"><h3>Selected publications</h3><span class="label">Full list on Scholar</span></div>
+      <div class="pubs">
+
+        <div class="pub">
+          <div class="yr">2025</div>
+          <div>
+            <h4>In-Context Semi-Supervised Learning</h4>
+            <p class="authors"><b>Jiashuo Fan</b>, Petru Rosu, Aaron T. Wang, Michael Li, Lawrence Carin, Xiang Cheng</p>
+            <p class="venue"><em>arXiv:2512.15934</em> · <a href="https://arxiv.org/abs/2512.15934">Preprint</a></p>
+          </div>
+        </div>
+
+        <div class="pub">
+          <div class="yr">2025</div>
+          <div>
+            <h4>Model Reprogramming Demystified: A Neural Tangent Kernel Perspective</h4>
+            <p class="authors">Ming-Yu Chung, <b>Jiashuo Fan</b>, Hancheng Ye, Qinsi Wang, Wei Shen, Chia-Mu Yu, Pin-Yu Chen, Sy-Yen Kuo</p>
+            <p class="venue"><em>arXiv:2506.00620</em> · <a href="https://arxiv.org/abs/2506.00620">Preprint</a></p>
+          </div>
+        </div>
+
+        <div class="pub">
+          <div class="yr">2025</div>
+          <div>
+            <h4>Tissue Reassembly with Generative AI</h4>
+            <p class="authors">Tingyang Yu, Chanakya Ekbote, Nikita Morozov, <b>Jiashuo Fan</b>, et al., Pascal Frossard, Maria Brbić</p>
+            <p class="venue"><em>bioRxiv</em> · <a href="https://doi.org/10.1101/2025.02.13.638045">10.1101/2025.02.13.638045</a></p>
+          </div>
+        </div>
+
+        <div class="pub">
+          <div class="yr">2023</div>
+          <div>
+            <h4>RCA-NOC: Relative Contrastive Alignment for Novel Object Captioning</h4>
+            <p class="authors"><b>Jiashuo Fan</b>, Yaoyuan Liang, Leyao Liu, Shao-Lun Huang, Lei Zhang</p>
+            <p class="venue"><em>ICCV 2023</em> — IEEE/CVF International Conference on Computer Vision</p>
+          </div>
+        </div>
+
+        <div class="pub">
+          <div class="yr">2023</div>
+          <div>
+            <h4>LUNA: Language as Continuing Anchors for Referring Expression Comprehension</h4>
+            <p class="authors">Yaoyuan Liang, Zhao Yang, Yansong Tang, <b>Jiashuo Fan</b>, Ziran Li, Jingang Wang, Philip H. S. Torr, Shao-Lun Huang</p>
+            <p class="venue"><em>ACM Multimedia 2023</em></p>
+          </div>
+        </div>
+
+        <div class="pub">
+          <div class="yr">2023</div>
+          <div>
+            <h4>ClickSeg: 3D Instance Segmentation with Click-Level Weak Annotations</h4>
+            <p class="authors">Leyao Liu, Tao Kong, Minzhao Zhu, <b>Jiashuo Fan</b>, Lu Fang</p>
+            <p class="venue"><em>arXiv:2307.09732</em> · <a href="https://arxiv.org/abs/2307.09732">Preprint</a></p>
+          </div>
+        </div>
+
+        <div class="pub">
+          <div class="yr">2022</div>
+          <div>
+            <h4>UCC: Uncertainty Guided Cross-Head Co-Training for Semi-Supervised Semantic Segmentation</h4>
+            <p class="authors"><b>Jiashuo Fan</b>, Bin-Bin Gao, Huan Jin, Lihui Jiang</p>
+            <p class="venue"><em>CVPR 2022</em> · <a href="https://doi.org/10.1109/CVPR52688.2022.00971">DOI</a> · <a href="https://arxiv.org/abs/2205.10334">arXiv</a></p>
+          </div>
+        </div>
+
+      </div>
+      <div class="prose" style="margin-top:1.1rem">
+        <p>Full list: <a href="https://scholar.google.com/citations?user=M5wOsysAAAAJ&amp;hl=en">Google Scholar</a>. Code for lab papers is released on GitHub at publication, with the evaluation scripts needed to reproduce the reported numbers.</p>
+      </div>
+    </section>
+
+    <section id="join">
+      <div class="shead"><h3>Join the lab</h3><span class="label">Open now</span></div>
+      <div class="prose" style="margin-bottom:1.2rem">
+        <p>The lab started in September 2026, so its first members will shape how it works. That is a real trade-off: you get unusual access and first-author priority on foundational projects, and you will not have five senior students to learn from. I would rather say that here than have you discover it after arriving.</p>
+      </div>
+      <div class="roles">
+        <div class="role">
+          <h4>Postdoctoral fellow (1)</h4>
+          <p>Multimodal imaging foundation models. Strong 3D medical imaging or vision–language background, first-author publications, fluent PyTorch. Start date flexible.</p>
+          <span class="label">Email me directly</span>
+        </div>
+        <div class="role">
+          <h4>PhD students (1–2, Fall 2027)</h4>
+          <p>PhD admission at Duke runs through a department program, not through me. If you are applying, email me first and I will tell you which programs I can review applications in this cycle.</p>
+          <span class="label">Email before applying</span>
+        </div>
+        <div class="role">
+          <h4>Duke MS &amp; undergraduates</h4>
+          <p>Semester-long scoped projects with a concrete deliverable — a data curation pipeline, an evaluation harness, an ablation study. Typically leads to co-authorship rather than first authorship.</p>
+          <span class="label">Rolling</span>
+        </div>
+        <div class="role">
+          <h4>Residents &amp; clinical fellows</h4>
+          <p>Research electives for trainees who have a question from clinical practice. You bring the question and the domain judgment; we bring the modeling and the evaluation design.</p>
+          <span class="label">Rolling</span>
+        </div>
+      </div>
+      <pre>To:      jf381@duke.edu
+Subject: [postdoc] multimodal imaging foundation models — Your Name
+
+<b>1.</b> One paragraph: which of Directions 01–03 you want to work on, and why that one.
+<b>2.</b> Two or three papers of yours (links). Say what <b>you</b> did in each.
+<b>3.</b> CV, and a link to code you have written.
+<b>4.</b> Earliest start date, and your visa / funding situation if relevant.
+
+No cover letter needed. I reply to emails that answer 1–4; I usually
+cannot reply to mass mailings that do not.</pre>
+    </section>
+
+    <section id="contact">
+      <div class="shead"><h3>Contact</h3><span class="label">Durham, NC</span></div>
+      <div class="prose">
+        <p><b>Email</b> · <a href="mailto:jf381@duke.edu">jf381@duke.edu</a> — the fastest way to reach me.<br>
+        <b>Mail</b> · Duke University School of Medicine, Durham, NC 27710</p>
+        <p>Clinical collaborators at Duke: email me with the question you want answered and roughly what data exists. Early conversations are cheap and save months.</p>
+      </div>
+    </section>
+  </main>
+</div>
+
+<footer>
+  <div class="footer__in">
+    <p>Duke Medical Imaging &amp; AI Jiashuo Lab · Jiashuo Fan, Assistant Professor · Duke University School of Medicine</p>
+    <p>Last updated September 2026</p>
+  </div>
+</footer>
+</body>
+</html>
