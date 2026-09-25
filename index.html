@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="Duke Medical Imaging & AI Jiashuo Lab — Jiashuo Fan, Assistant Professor, Duke University School of Medicine. Multimodal imaging foundation models, grounded reporting, label-efficient learning, external validation.">
+<meta name="description" content="Duke Medical Imaging & AI Jiashuo Lab — Jiashuo Fan. Multimodal imaging foundation models, grounded reporting, label-efficient learning, external validation.">
 <meta name="author" content="Jiashuo Fan">
 <meta name="color-scheme" content="light dark">
 <meta property="og:title" content="Duke Medical Imaging & AI Jiashuo Lab">
-<meta property="og:description" content="Jiashuo Fan, Assistant Professor — multimodal imaging foundation models at Duke University School of Medicine.">
+<meta property="og:description" content="Jiashuo Fan — multimodal imaging foundation models at Duke University School of Medicine.">
 <meta property="og:type" content="website">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🩻</text></svg>">
 <title>Duke Medical Imaging &amp; AI Jiashuo Lab</title>
@@ -139,17 +139,18 @@
   .portrait{
     width:100%;aspect-ratio:4/5;display:block;border:1px solid var(--line);border-radius:3px;background:var(--surface-2);
   }
-  /* placeholder portrait: a cat, drawn in the lab palette */
-  .p-bg{fill:var(--surface-2)}
-  .p-grid path{fill:none;stroke:color-mix(in srgb,var(--line) 65%,transparent);stroke-width:1}
-  .p-tail{fill:none;stroke:var(--navy);stroke-width:9;stroke-linecap:round}
-  .p-cat{fill:var(--navy)}
-  .p-eye{fill:var(--accent)}
-  .p-pupil{fill:var(--surface);opacity:.9}
-  .p-nose{fill:var(--overlay)}
-  .p-whisk{fill:none;stroke:var(--surface);stroke-width:1.5;stroke-linecap:round;opacity:.5}
-  .p-mark{fill:none;stroke:color-mix(in srgb,var(--overlay) 75%,transparent);stroke-width:2}
-  .p-cross{fill:none;stroke:color-mix(in srgb,var(--overlay) 75%,transparent);stroke-width:1.5}
+  /* illustrated portrait — a drawing, not a photograph */
+  .f-bg{fill:var(--surface-2)}
+  .f-grid path{fill:none;stroke:color-mix(in srgb,var(--line) 65%,transparent);stroke-width:1}
+  .f-body{fill:var(--navy)}
+  .f-shirt{fill:var(--surface-2)}
+  .f-face{fill:color-mix(in srgb,var(--navy) 20%,var(--surface))}
+  .f-hair{fill:color-mix(in srgb,var(--navy) 82%,#000)}
+  .f-eye{fill:var(--navy)}
+  .f-glass{fill:none;stroke:var(--overlay);stroke-width:2.2;stroke-linejoin:round}
+  .f-line{fill:none;stroke:color-mix(in srgb,var(--navy) 50%,transparent);stroke-width:1.6;stroke-linecap:round}
+  .f-badge{fill:var(--accent)}
+  .f-badge-line{fill:none;stroke:var(--surface);stroke-width:1.4;opacity:.85}
   .card{background:var(--surface);border:1px solid var(--line);border-radius:3px;padding:1.05rem 1.1rem}
   .meta{display:grid;grid-template-columns:auto 1fr;gap:.42rem .85rem;font-size:.8125rem}
   .meta dt{font-family:"IBM Plex Mono",monospace;font-size:.6875rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-faint);padding-top:.16rem}
@@ -236,31 +237,27 @@
 
 <div class="shell">
   <aside class="rail">
-    <svg class="portrait" viewBox="0 0 160 200" role="img" aria-label="Cat illustration used as Jiashuo Fan's profile picture">
-      <rect class="p-bg" width="160" height="200"></rect>
-      <g class="p-grid">
-        <path d="M0 40 H160 M0 80 H160 M0 120 H160 M0 160 H160"></path>
+    <svg class="portrait" viewBox="0 0 160 200" role="img" aria-label="Illustrated portrait of Jiashuo Fan (a drawing, not a photograph)">
+      <rect class="f-bg" width="160" height="200"></rect>
+      <g class="f-grid"><path d="M0 40 H160 M0 80 H160 M0 120 H160 M0 160 H160"></path></g>
+      <path class="f-body" d="M12 200 C 18 163 46 149 80 149 C 114 149 142 163 148 200 Z"></path>
+      <path class="f-shirt" d="M80 149 L 67 155 L 80 180 L 93 155 Z"></path>
+      <path class="f-face" d="M69 126 H91 V152 H69 Z"></path>
+      <ellipse class="f-face" cx="80" cy="102" rx="30" ry="34"></ellipse>
+      <circle class="f-face" cx="51" cy="104" r="5"></circle>
+      <circle class="f-face" cx="109" cy="104" r="5"></circle>
+      <path class="f-hair" d="M50 99 C 48 70 63 59 80 59 C 97 59 112 70 110 99 C 105 80 96 74 80 74 C 64 74 55 80 50 99 Z"></path>
+      <circle class="f-eye" cx="68" cy="104" r="2.2"></circle>
+      <circle class="f-eye" cx="92" cy="104" r="2.2"></circle>
+      <g class="f-glass">
+        <rect x="58" y="96" width="19" height="16" rx="3.5"></rect>
+        <rect x="83" y="96" width="19" height="16" rx="3.5"></rect>
+        <path d="M77 103 H83 M58 101 L 51 99 M102 101 L 109 99"></path>
       </g>
-      <path class="p-tail" d="M118 176 C 146 170 150 132 128 124"></path>
-      <path class="p-cat" d="M80 192 C 44 192 36 150 50 120 C 58 102 102 102 110 120 C 124 150 116 192 80 192 Z"></path>
-      <path class="p-cat" d="M52 76 L 56 40 L 80 60 Z"></path>
-      <path class="p-cat" d="M108 76 L 104 40 L 80 60 Z"></path>
-      <circle class="p-cat" cx="80" cy="94" r="36"></circle>
-      <g class="p-eye">
-        <ellipse cx="66" cy="90" rx="7" ry="9"></ellipse>
-        <ellipse cx="94" cy="90" rx="7" ry="9"></ellipse>
-      </g>
-      <g class="p-pupil">
-        <ellipse cx="66" cy="90" rx="2" ry="6"></ellipse>
-        <ellipse cx="94" cy="90" rx="2" ry="6"></ellipse>
-      </g>
-      <path class="p-nose" d="M76 106 L 84 106 L 80 111 Z"></path>
-      <g class="p-whisk">
-        <path d="M74 114 C 66 118 58 117 52 113"></path>
-        <path d="M86 114 C 94 118 102 117 108 113"></path>
-      </g>
-      <circle class="p-mark" cx="80" cy="150" r="13"></circle>
-      <path class="p-cross" d="M80 137 V 163 M67 150 H 93"></path>
+      <path class="f-line" d="M73 122 C 76 125 84 125 87 122"></path>
+      <path class="f-line" d="M67 155 L 75 178 M93 155 L 85 178"></path>
+      <rect class="f-badge" x="71" y="177" width="18" height="13" rx="2"></rect>
+      <path class="f-badge-line" d="M75 181 H85 M75 185 H82"></path>
     </svg>
 
     <div class="card">
@@ -269,7 +266,7 @@
         <dt>Started</dt><dd class="num">September 2026</dd>
         <dt>Focus</dt><dd>Multimodal imaging foundation models</dd>
         <dt>Modalities</dt><dd>CT · MR · PET · CXR</dd>
-        <dt>Openings</dt><dd class="num">1 postdoc · 1–2 PhD</dd>
+        <dt>Openings</dt><dd>Postdoc · PhD — see Join the lab</dd>
       </dl>
     </div>
 
@@ -281,7 +278,6 @@
     <div class="card links">
       <a href="mailto:jf381@duke.edu">jf381@duke.edu <span>Email</span></a>
       <a href="https://scholar.google.com/citations?user=M5wOsysAAAAJ&amp;hl=en">Jiashuo Fan <span>Scholar</span></a>
-      <a href="https://scholars.duke.edu/">Scholars@Duke <span>Profile</span></a>
     </div>
   </aside>
 
@@ -291,7 +287,7 @@
       <div class="prose">
         <p>I am an Assistant Professor at Duke University School of Medicine, where I direct the Duke Medical Imaging &amp; AI Jiashuo Lab. We build multimodal foundation models for clinical imaging — models pretrained jointly on volumetric images and the text radiologists actually write — and we hold them to the standard a reading room would: findings that point back to voxels, performance that survives a change of scanner, and failure modes we can name before deployment.</p>
         <p>My earlier work was on learning without enough labels and on connecting language to pixels: uncertainty-guided co-training for semi-supervised segmentation (CVPR 2022), novel-object captioning and referring-expression grounding (ICCV 2023, ACM MM 2023), 3D instance segmentation from click-level annotations, and in-context semi-supervised learning. Clinical imaging is where those problems stop being benchmarks: annotation is expensive because it costs radiologist hours, the language is a report rather than a caption, and a wrong answer has a patient attached to it.</p>
-        <p>Most of our projects start from a question a clinical collaborator brought to us and end with an external validation cohort rather than a leaderboard. The lab opened in September 2026 and is recruiting its first members.</p>
+        <p>Projects here start from a question a clinical collaborator brings us, and end with an external validation cohort rather than a leaderboard. The lab opened in September 2026 and is recruiting its first members.</p>
         <p>I read every email from prospective trainees. I am slower to answer generic ones — see <a href="#join">Join the lab</a> for what to send.</p>
       </div>
     </section>
@@ -326,7 +322,7 @@
           <p>Most imaging models degrade on the first scanner they were not trained on. We characterize that degradation across sites, vendors, protocols, and patient subgroups; develop label-efficient adaptation for new sites; and build monitoring that flags distribution drift in a live PACS setting before accuracy is lost.</p>
           <dl>
             <dt>Reporting</dt><dd>AUROC / AUPRC with 95% CI, external cohorts named explicitly, subgroup tables, decision-curve analysis</dd>
-            <dt>Translation</dt><dd>Prospective silent trials; regulatory framing (SaMD, FDA 510(k)) with Duke collaborators</dd>
+            <dt>Translation</dt><dd>Prospective silent trials, and regulatory framing (SaMD, FDA 510(k)) as projects mature</dd>
           </dl>
         </article>
 
@@ -421,12 +417,12 @@
       </div>
       <div class="roles">
         <div class="role">
-          <h4>Postdoctoral fellow (1)</h4>
+          <h4>Postdoctoral fellow</h4>
           <p>Multimodal imaging foundation models. Strong 3D medical imaging or vision–language background, first-author publications, fluent PyTorch. Start date flexible.</p>
           <span class="label">Email me directly</span>
         </div>
         <div class="role">
-          <h4>PhD students (1–2, Fall 2027)</h4>
+          <h4>PhD students (Fall 2027)</h4>
           <p>PhD admission at Duke runs through a department program, not through me. If you are applying, email me first and I will tell you which programs I can review applications in this cycle.</p>
           <span class="label">Email before applying</span>
         </div>
