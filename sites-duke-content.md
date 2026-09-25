@@ -16,8 +16,7 @@ Jiashuo Fan
 Incoming Assistant Professor, Duke University
 jf381@duke.edu
 
-I am an incoming Assistant Professor at Duke University, where I am currently completing my graduate work in the Pierre R. Lamond Department of Electrical and Computer
-Engineering. I work on learning when labels are scarce, and on
+I am an incoming Assistant Professor at Duke University. I work on learning when labels are scarce, and on
 connecting language to pixels — and I am most interested in the version of those
 problems that appears in medical imaging, where annotation costs clinician hours, the
 text that accompanies an image is a report rather than a caption, and a wrong answer
