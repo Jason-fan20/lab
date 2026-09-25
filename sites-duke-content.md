@@ -7,7 +7,7 @@
 SITE TITLE / TAGLINE
 ================================================================
 Title:   Jiashuo Fan
-Tagline: Label-efficient learning, vision–language grounding, and medical image analysis
+Tagline: Machine learning for medical imaging — label-efficient segmentation, image–report models, evaluation across sites
 
 ================================================================
 PAGE 1 — "About"  (set as the site's front page)
@@ -25,7 +25,8 @@ has a patient attached to it.
 My published work so far covers uncertainty-guided co-training for semi-supervised
 segmentation (CVPR 2022), novel-object captioning and referring-expression grounding
 (ICCV 2023, ACM MM 2023), 3D instance segmentation from click-level annotations,
-in-context semi-supervised learning, and generative models for tissue reconstruction.
+in-context semi-supervised learning, and generative models for reconstructing tissue
+structure (bioRxiv 2025).
 
 Links
 - Scholars@Duke: https://scholars.duke.edu/person/jiashuo.fan
@@ -35,37 +36,48 @@ Links
 ================================================================
 PAGE 2 — "Research"
 ================================================================
-Thread 01 — Label efficiency
-Learning from annotations nobody can afford to finish
+Thread 01 — Annotation cost
+Segmentation when the only qualified annotator is a clinician
 
-Semi-supervised and weakly supervised segmentation: how much of a dense annotation is
-actually necessary, and which unlabeled examples a model should trust. My CVPR 2022
-work used disagreement between two prediction heads as an uncertainty signal for
-pseudo-labelling; ClickSeg pushed the annotation budget down to single clicks in 3D.
+A dense 3D annotation of a CT or MR volume costs radiologist hours, so the useful
+question is never how a model performs under full supervision — it is how much of the
+label can be dropped before the model stops being trustworthy. My CVPR 2022 work used
+disagreement between two prediction heads as an uncertainty signal for pseudo-labelling;
+ClickSeg pushed the annotation budget for 3D instances down to single clicks. I am
+carrying both into volumetric clinical data: organ and lesion delineation, longitudinal
+follow-up, and the common case where the positive class is a handful of voxels.
 
 Methods: co-training with uncertainty estimates, pseudo-label filtering, click- and
-scribble-level supervision, in-context adaptation.
+scribble-level supervision, in-context adaptation to a new site.
+Data: CT / MR / PET volumes; DICOM to NIfTI pipelines that keep acquisition provenance.
 
-Thread 02 — Language and pixels
-Grounding: text that points back at the image
+Thread 02 — Reports, not captions
+Findings that point back at the voxels that produced them
 
-Captioning objects a model was never trained to name, and resolving a referring
-expression to the right region. The recurring question is alignment — whether the
-phrase a model produces is tied to the evidence it claims, which is exactly what
-matters when the text is a clinical finding rather than a caption.
+A radiology report is not a caption. It is a set of claims, and each one should be
+traceable to evidence in the image — usually to a number a reader can check: a diameter,
+a volume, a Hounsfield-unit range, an SUV. My work on novel-object captioning (ICCV
+2023) and referring-expression comprehension (ACM MM 2023) was that alignment problem in
+natural images; the clinical version adds calibration and auditing, which findings a
+model invents and which it quietly misses.
 
-Methods: contrastive alignment, anchor-based referring-expression comprehension,
-vision–language pretraining.
+Methods: contrastive alignment, anchor-based grounding, image-report pretraining,
+calibrated uncertainty.
+Metrics: per-finding sensitivity at fixed specificity, grounded-report accuracy,
+calibration error.
 
-Thread 03 — Imaging applications
-Where these methods meet real imaging data
+Thread 03 — Generalization
+Performance that survives a change of scanner
 
-Applying the two threads above to biomedical and clinical imaging: generative
-reconstruction of tissue structure, and evaluation that survives a change of scanner,
-site, or protocol rather than a single held-out split.
+Most imaging models degrade on the first scanner they were not trained on. I want to
+characterize that degradation across vendors, protocols, sites and patient subgroups,
+and to adapt a model to a new site with a realistic label budget instead of retraining
+it. A related thread is generative modeling of biological structure — reassembling
+tissue organization from dissociated measurements (bioRxiv 2025).
 
-Evaluation: Dice/DSC for localized structures, AUROC / AUPRC with confidence
-intervals, external cohorts reported separately from the development set.
+Evaluation: Dice/DSC for localized structures, AUROC / AUPRC with 95% confidence
+intervals, subgroup tables, external cohorts reported separately from the development
+set.
 
 ================================================================
 PAGE 3 — "Publications"
@@ -110,8 +122,10 @@ PAGE 4 — "Contact"
 Email: jf381@duke.edu — the fastest way to reach me.
 Duke University, Durham, NC 27708
 
-Happy to talk about label-efficient learning or medical image analysis, and open to
-collaboration on projects where the evaluation is the hard part.
+Happy to talk about medical image analysis — label-efficient segmentation, image-report
+models, or evaluation across sites. Clinical collaborators: email me with the question
+you want answered and roughly what data exists; early conversations are cheap and save
+months.
 
 ================================================================
 NOTES

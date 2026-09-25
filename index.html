@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="Jiashuo Fan — incoming Assistant Professor, Duke University. Label-efficient learning, vision-language grounding, medical image analysis.">
+<meta name="description" content="Jiashuo Fan — incoming Assistant Professor, Duke University. Machine learning for medical imaging: label-efficient segmentation, image-report models, and evaluation across scanners and sites.">
 <meta name="author" content="Jiashuo Fan">
 <meta name="color-scheme" content="light dark">
 <meta property="og:title" content="Jiashuo Fan">
-<meta property="og:description" content="Incoming Assistant Professor, Duke University. Label-efficient learning, vision-language grounding, and medical image analysis.">
+<meta property="og:description" content="Incoming Assistant Professor, Duke University. Machine learning for medical imaging — label-efficient segmentation, image–report models, evaluation across sites.">
 <meta property="og:type" content="profile">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📄</text></svg>">
 <title>Jiashuo Fan</title>
@@ -241,7 +241,7 @@
       <dl class="meta">
         <dt>Position</dt><dd>Incoming Assistant Professor</dd>
         <dt>Institution</dt><dd>Duke University</dd>
-        <dt>Interests</dt><dd>Label-efficient learning · vision–language grounding · medical image analysis</dd>
+        <dt>Interests</dt><dd>Medical image analysis · image–report models · label-efficient segmentation</dd>
       </dl>
     </div>
 
@@ -256,39 +256,41 @@
     <section id="about">
       <div class="shead"><h3>About</h3><span class="label">Sep 2026</span></div>
       <div class="prose">
-        <p>I am an incoming Assistant Professor at Duke University. I work on learning when labels are scarce, and on connecting language to pixels — and I am most interested in the version of those problems that appears in medical imaging, where annotation costs clinician hours, the text that accompanies an image is a report rather than a caption, and a wrong answer has a patient attached to it.</p>
-        <p>My published work so far covers uncertainty-guided co-training for semi-supervised segmentation (CVPR 2022), novel-object captioning and referring-expression grounding (ICCV 2023, ACM MM 2023), 3D instance segmentation from click-level annotations, in-context semi-supervised learning, and generative models for tissue reconstruction.</p>
+        <p>I am an incoming Assistant Professor at Duke University. My research is machine learning for medical imaging: segmentation and detection under annotation budgets a clinical department can actually afford, models that pair volumetric images with the reports radiologists write, and evaluation that holds up across scanners and sites rather than on a single held-out split. What keeps me in this setting is that the constraints are concrete — annotation costs clinician hours, the text accompanying an image is a report rather than a caption, and a wrong answer has a patient attached to it.</p>
+        <p>My published work builds the methods this rests on: uncertainty-guided co-training for semi-supervised segmentation (CVPR 2022), novel-object captioning and referring-expression grounding (ICCV 2023, ACM MM 2023), 3D instance segmentation from click-level annotations, in-context semi-supervised learning, and generative models for reconstructing tissue structure (bioRxiv 2025).</p>
       </div>
     </section>
 
     <section id="research">
-      <div class="shead"><h3>Research</h3><span class="label">Three threads</span></div>
+      <div class="shead"><h3>Research</h3><span class="label">Medical imaging · three threads</span></div>
       <div class="dirs">
 
         <article class="dir">
-          <span class="tag">Thread 01 · Label efficiency</span>
-          <h4>Learning from annotations nobody can afford to finish</h4>
-          <p>Semi-supervised and weakly supervised segmentation: how much of a dense annotation is actually necessary, and which unlabeled examples a model should trust. My CVPR 2022 work used disagreement between two prediction heads as an uncertainty signal for pseudo-labelling; ClickSeg pushed the annotation budget down to single clicks in 3D.</p>
+          <span class="tag">Thread 01 · Annotation cost</span>
+          <h4>Segmentation when the only qualified annotator is a clinician</h4>
+          <p>A dense 3D annotation of a CT or MR volume costs radiologist hours, so the useful question is never how a model performs under full supervision — it is how much of the label can be dropped before the model stops being trustworthy. My CVPR 2022 work used disagreement between two prediction heads as an uncertainty signal for pseudo-labelling; ClickSeg pushed the annotation budget for 3D instances down to single clicks. I am carrying both into volumetric clinical data: organ and lesion delineation, longitudinal follow-up, and the common case where the positive class is a handful of voxels.</p>
           <dl>
-            <dt>Methods</dt><dd>Co-training with uncertainty estimates, pseudo-label filtering, click- and scribble-level supervision, in-context adaptation</dd>
+            <dt>Methods</dt><dd>Co-training with uncertainty estimates, pseudo-label filtering, click- and scribble-level supervision, in-context adaptation to a new site</dd>
+            <dt>Data</dt><dd>CT / MR / PET volumes; DICOM → NIfTI pipelines that keep acquisition provenance</dd>
           </dl>
         </article>
 
         <article class="dir">
-          <span class="tag">Thread 02 · Language and pixels</span>
-          <h4>Grounding: text that points back at the image</h4>
-          <p>Captioning objects a model was never trained to name, and resolving a referring expression to the right region. The recurring question is alignment — whether the phrase a model produces is tied to the evidence it claims, which is exactly what matters when the text is a clinical finding rather than a caption.</p>
+          <span class="tag">Thread 02 · Reports, not captions</span>
+          <h4>Findings that point back at the voxels that produced them</h4>
+          <p>A radiology report is not a caption. It is a set of claims, and each one should be traceable to evidence in the image — usually to a number a reader can check: a diameter, a volume, a Hounsfield-unit range, an SUV. My work on novel-object captioning (ICCV 2023) and referring-expression comprehension (ACM MM 2023) was that alignment problem in natural images; the clinical version adds calibration and auditing, which findings a model invents and which it quietly misses.</p>
           <dl>
-            <dt>Methods</dt><dd>Contrastive alignment, anchor-based referring-expression comprehension, vision–language pretraining</dd>
+            <dt>Methods</dt><dd>Contrastive alignment, anchor-based grounding, image–report pretraining, calibrated uncertainty</dd>
+            <dt>Metrics</dt><dd>Per-finding sensitivity at fixed specificity, grounded-report accuracy, calibration error</dd>
           </dl>
         </article>
 
         <article class="dir">
-          <span class="tag">Thread 03 · Imaging applications</span>
-          <h4>Where these methods meet real imaging data</h4>
-          <p>Applying the two threads above to biomedical and clinical imaging: generative reconstruction of tissue structure, and evaluation that survives a change of scanner, site, or protocol rather than a single held-out split.</p>
+          <span class="tag">Thread 03 · Generalization</span>
+          <h4>Performance that survives a change of scanner</h4>
+          <p>Most imaging models degrade on the first scanner they were not trained on. I want to characterize that degradation across vendors, protocols, sites and patient subgroups, and to adapt a model to a new site with a realistic label budget instead of retraining it. A related thread is generative modeling of biological structure — reassembling tissue organization from dissociated measurements (bioRxiv 2025).</p>
           <dl>
-            <dt>Evaluation</dt><dd>Dice/DSC for localized structures, AUROC / AUPRC with confidence intervals, external cohorts reported separately from the development set</dd>
+            <dt>Evaluation</dt><dd>Dice/DSC for localized structures, AUROC / AUPRC with 95% confidence intervals, subgroup tables, external cohorts reported separately from the development set</dd>
           </dl>
         </article>
 
@@ -373,7 +375,7 @@
       <div class="prose">
         <p><b>Email</b> · <a href="mailto:jf381@duke.edu">jf381@duke.edu</a> — the fastest way to reach me.<br>
         <b>Institution</b> · Duke University, Durham, NC 27708</p>
-        <p>Happy to talk about label-efficient learning or medical image analysis, and open to collaboration on projects where the evaluation is the hard part.</p>
+        <p>Happy to talk about medical image analysis — label-efficient segmentation, image–report models, or evaluation across sites. Clinical collaborators: email me with the question you want answered and roughly what data exists; early conversations are cheap and save months.</p>
       </div>
     </section>
   </main>
@@ -381,7 +383,7 @@
 
 <footer>
   <div class="footer__in">
-    <p>Jiashuo Fan · Electrical &amp; Computer Engineering, Duke University</p>
+    <p>Jiashuo Fan · Duke University · Durham, NC</p>
     <p>Last updated September 2026</p>
   </div>
 </footer>
