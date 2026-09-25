@@ -13,11 +13,11 @@ Tagline: Label-efficient learning, vision–language grounding, and medical imag
 PAGE 1 — "About"  (set as the site's front page)
 ================================================================
 Jiashuo Fan
-Pierre R. Lamond Department of Electrical and Computer Engineering, Duke University
+Incoming Assistant Professor, Duke University
 jf381@duke.edu
 
-I am a graduate student in the Pierre R. Lamond Department of Electrical and Computer
-Engineering at Duke University. I work on learning when labels are scarce, and on
+I am an incoming Assistant Professor at Duke University, where I am currently completing my graduate work in the Pierre R. Lamond Department of Electrical and Computer
+Engineering. I work on learning when labels are scarce, and on
 connecting language to pixels — and I am most interested in the version of those
 problems that appears in medical imaging, where annotation costs clinician hours, the
 text that accompanies an image is a report rather than a caption, and a wrong answer
